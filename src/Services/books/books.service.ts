@@ -8,7 +8,13 @@ export class BooksService {
     constructor(
         private readonly bookRepository: BookRepository
     ){}
-    saveBook( newBook: BookDTO ): BookDTO {
-        return this.bookRepository.saveBook(newBook);
+
+    async getAllBooks(): Promise<BookDTO[]>
+    {
+        return await this.bookRepository.getAllBooks();
+    };
+
+    async saveBook( newBook: BookDTO ): Promise<BookDTO> {
+        return await this.bookRepository.saveBook(newBook);
     }
 }

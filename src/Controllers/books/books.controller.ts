@@ -10,15 +10,15 @@ export class BooksController {
     ){}
 
     @Get()
-    getAllBooks(): string {
-        return "Retorna todos os livros"
+    async getAllBooks(): Promise<BookDTO[]> {
+       return this.bookService.getAllBooks();
     }
 
     @Post()
-    saveBook(
+    async saveBook(
         @Body() newBook: BookDTO
-    ): BookDTO {
-        return this.bookService.saveBook(newBook);
+    ): Promise<BookDTO> {
+        return await this.bookService.saveBook(newBook);
     }
 
     @Patch()

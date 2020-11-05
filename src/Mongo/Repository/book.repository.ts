@@ -10,9 +10,12 @@ export class BookRepository {
     constructor(
         @InjectModel('book') private readonly bookModel: Model<Book>
     ){}
-
-    saveBook (newBook: BookDTO){
+   
+   async getAllBooks(): Promise<BookDTO[]>{
+        return await this.bookModel.find({}).exec();
+   }
+   async saveBook (newBook: BookDTO){
         const savedBook = this.bookModel(newBook);
-        return savedBook.save();
+        return await savedBook.save();
     }
 }
